@@ -1,0 +1,33 @@
+# Override file for local development
+services:
+  web:
+    environment:
+      - DEBUG=1
+      - CORS_ALLOW_ALL_ORIGINS=True
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             python scripts/generate_sample_data.py &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  db:
+    environment:
+      - MYSQL_DATABASE=smartinventory2
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3307:3306"  # Use 3307 on host to avoid conflict with local MySQL
+
+  redis:
+    ports:
+      - "6379:6379"
+
+volumes:
+  static_volume:
+  media_volume:

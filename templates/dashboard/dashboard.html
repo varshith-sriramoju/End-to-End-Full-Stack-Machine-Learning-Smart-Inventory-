@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - SmartInventory{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <p class="text-gray-600 mt-1">Monitor your inventory performance and forecasts</p>
+        </div>
+        <div class="flex space-x-3">
+            <button id="refresh-dashboard" class="btn-secondary">
+                <i class="fas fa-sync-alt mr-2"></i>
+                Refresh
+            </button>
+            <select id="time-range-select" class="form-input">
+                <option value="7">Last 7 days</option>
+                <option value="30" selected>Last 30 days</option>
+                <option value="90">Last 90 days</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div id="kpi-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- KPI cards will be populated by JavaScript -->
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Sales Trends Chart -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-xl font-semibold">Sales Trends</h2>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="sales-trend-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast Accuracy -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-xl font-semibold">Forecast Accuracy</h2>
+            </div>
+            <div class="card-body">
+                <div id="forecast-accuracy">
+                    <!-- Accuracy metrics will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Alerts -->
+    <div class="card">
+        <div class="card-header">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-semibold">Recent Alerts</h2>
+                <button class="btn-sm btn-primary" onclick="navigateToPage('alerts')">
+                    View All
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="recent-alerts">
+                <!-- Recent alerts will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-xl font-semibold">Top Performing Products</h2>
+        </div>
+        <div class="card-body">
+            <div id="top-products">
+                <!-- Top products will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check authentication
+    if (!isAuthenticated()) {
+        window.location.href = '/';
+        return;
+    }
+    
+    // Initialize dashboard
+    initializeDashboard();
+});
+</script>
+{% endblock %}

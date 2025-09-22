@@ -1,0 +1,1 @@
+# Authentication models are handled by core.models.UserProfile

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SmartInventory - Retail Forecasting Platform{% endblock %}</title>
+
+    <!-- CSS -->
+    <link href="/static/css/main.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold text-gray-900">
+                            <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                            SmartInventory
+                        </h1>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="/dashboard/" class="nav-link" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt mr-1"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="nav-link" data-page="upload">
+                            <i class="fas fa-upload mr-1"></i>
+                            Data Upload
+                        </a>
+                        <a href="#" class="nav-link" data-page="predictions">
+                            <i class="fas fa-crystal-ball mr-1"></i>
+                            Predictions
+                        </a>
+                        <a href="#" class="nav-link" data-page="alerts">
+                            <i class="fas fa-bell mr-1"></i>
+                            Alerts
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-4">
+                        <div class="text-sm text-gray-700" id="user-info">
+                            <i class="fas fa-user-circle mr-1"></i>
+                            <span id="username">Loading...</span>
+                        </div>
+                        <button class="btn-secondary" onclick="logout()">
+                            <i class="fas fa-sign-out-alt mr-1"></i>
+                            Logout
+                        </button>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button class="mobile-menu-button p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
+                <a href="/dashboard/" class="mobile-nav-link" data-page="dashboard">Dashboard</a>
+                <a href="#" class="mobile-nav-link" data-page="upload">Data Upload</a>
+                <a href="#" class="mobile-nav-link" data-page="predictions">Predictions</a>
+                <a href="#" class="mobile-nav-link" data-page="alerts">Alerts</a>
+                <hr class="my-2">
+                <button class="mobile-nav-link w-full text-left" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <div class="text-gray-600 mt-4">Loading...</div>
+    </div>
+
+    <!-- Main content -->
+    <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Toast notifications -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

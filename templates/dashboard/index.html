@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% block title %}SmartInventory - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg mb-8 text-white">
+    <div class="px-8 py-12">
+        <div class="max-w-3xl">
+            <h1 class="text-4xl font-bold mb-4">
+                Welcome to SmartInventory
+            </h1>
+            <p class="text-xl mb-6 text-blue-100">
+                Intelligent retail forecasting platform powered by machine learning. 
+                Optimize your inventory, predict demand, and never run out of stock again.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <button class="btn-white" onclick="navigateTo('dashboard')">
+                    <i class="fas fa-tachometer-alt mr-2"></i>
+                    View Dashboard
+                </button>
+                <button class="btn-outline-white" onclick="navigateTo('upload')">
+                    <i class="fas fa-upload mr-2"></i>
+                    Upload Data
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Grid -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+    <div class="feature-card">
+        <div class="feature-icon bg-blue-100 text-blue-600">
+            <i class="fas fa-chart-line text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Demand Forecasting</h3>
+        <p class="text-gray-600">
+            Advanced ML algorithms predict future demand with high accuracy, 
+            helping you optimize inventory levels.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon bg-green-100 text-green-600">
+            <i class="fas fa-upload text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Easy Data Import</h3>
+        <p class="text-gray-600">
+            Upload CSV files with sales history. Our system automatically 
+            validates and processes your data.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon bg-yellow-100 text-yellow-600">
+            <i class="fas fa-bell text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Smart Alerts</h3>
+        <p class="text-gray-600">
+            Get notified about potential stockouts, overstock situations, 
+            and unusual demand patterns.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon bg-purple-100 text-purple-600">
+            <i class="fas fa-cog text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Automated ML</h3>
+        <p class="text-gray-600">
+            Models automatically retrain with new data to maintain 
+            accuracy over time.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon bg-red-100 text-red-600">
+            <i class="fas fa-chart-bar text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Interactive Dashboards</h3>
+        <p class="text-gray-600">
+            Beautiful, responsive charts and KPIs to monitor your 
+            inventory performance.
+        </p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon bg-indigo-100 text-indigo-600">
+            <i class="fas fa-users text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Role-Based Access</h3>
+        <p class="text-gray-600">
+            Secure access control with admin, manager, and analyst roles 
+            for different team members.
+        </p>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <h2 class="text-2xl font-bold mb-6">Quick Overview</h2>
+    <div id="quick-stats" class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Stats will be loaded via JavaScript -->
+    </div>
+</div>
+
+<!-- Getting Started -->
+<div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6">Getting Started</h2>
+    <div class="space-y-4">
+        <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                1
+            </div>
+            <div>
+                <h3 class="font-semibold">Upload Historical Data</h3>
+                <p class="text-gray-600">
+                    Start by uploading your historical sales data in CSV format. 
+                    Include columns for date, store_id, sku_id, sales, price, on_hand, and promotions_flag.
+                </p>
+            </div>
+        </div>
+        
+        <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                2
+            </div>
+            <div>
+                <h3 class="font-semibold">Train ML Models</h3>
+                <p class="text-gray-600">
+                    Our system automatically processes your data and trains machine learning 
+                    models to understand demand patterns and seasonality.
+                </p>
+            </div>
+        </div>
+        
+        <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                3
+            </div>
+            <div>
+                <h3 class="font-semibold">Get Predictions</h3>
+                <p class="text-gray-600">
+                    Access demand forecasts through the dashboard or API. Set up alerts 
+                    to be notified about potential inventory issues.
+                </p>
+            </div>
+        </div>
+        
+        <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                4
+            </div>
+            <div>
+                <h3 class="font-semibold">Monitor Performance</h3>
+                <p class="text-gray-600">
+                    Track forecast accuracy and model performance. The system automatically 
+                    retrains models to maintain optimal performance.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal (shown if not authenticated) -->
+<div id="login-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="text-2xl font-bold">Login to SmartInventory</h2>
+        </div>
+        <div class="modal-body">
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
+                        Username
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        required
+                        class="form-input"
+                        placeholder="Enter your username"
+                    >
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+                        Password
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required
+                        class="form-input"
+                        placeholder="Enter your password"
+                    >
+                </div>
+                <div class="form-error hidden" id="login-error"></div>
+                <button type="submit" class="btn-primary w-full">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is authenticated
+    if (!isAuthenticated()) {
+        showLoginModal();
+    } else {
+        loadQuickStats();
+    }
+});
+
+function showLoginModal() {
+    document.getElementById('login-modal').classList.remove('hidden');
+    
+    // Handle login form
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const credentials = {
+            username: formData.get('username'),
+            password: formData.get('password')
+        };
+        
+        try {
+            showLoading();
+            const result = await login(credentials);
+            
+            if (result.success) {
+                document.getElementById('login-modal').classList.add('hidden');
+                showToast('Login successful!', 'success');
+                loadQuickStats();
+                updateNavigation();
+            } else {
+                document.getElementById('login-error').textContent = result.error;
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        } catch (error) {
+            document.getElementById('login-error').textContent = 'Login failed. Please try again.';
+            document.getElementById('login-error').classList.remove('hidden');
+        } finally {
+            hideLoading();
+        }
+    });
+}
+
+async function loadQuickStats() {
+    try {
+        const stats = await apiCall('/api/dashboard/stats/');
+        
+        const statsContainer = document.getElementById('quick-stats');
+        statsContainer.innerHTML = `
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-blue-600">${stats.overview.total_stores}</div>
+                <div class="text-gray-600">Total Stores</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-green-600">${stats.overview.total_products}</div>
+                <div class="text-gray-600">Active Products</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-purple-600">${stats.overview.total_uploads}</div>
+                <div class="text-gray-600">Data Uploads</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-red-600">${stats.overview.active_alerts}</div>
+                <div class="text-gray-600">Active Alerts</div>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error loading quick stats:', error);
+    }
+}
+
+function navigateTo(page) {
+    switch (page) {
+        case 'dashboard':
+            window.location.href = '/dashboard/';
+            break;
+        case 'upload':
+            showToast('Data upload feature will be available soon!', 'info');
+            break;
+        default:
+            showToast(`${page} feature coming soon!`, 'info');
+    }
+}
+</script>
+{% endblock %}
