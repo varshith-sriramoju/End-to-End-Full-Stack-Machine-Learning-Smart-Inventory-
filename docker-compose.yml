@@ -39,12 +39,10 @@ services:
       - .:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/media
+    env_file: .env.development
     environment:
-      - DEBUG=1
-      - DATABASE_URL=mysql://root:root@db:3306/smartinventory2
-      - REDIS_URL=redis://redis:6379/0
-      - SECRET_KEY=dev-secret-key-change-in-production
-      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+      # Overrides or additions specific to container runtime (keep minimal)
+      PYTHONUNBUFFERED: "1"
     depends_on:
       db:
         condition: service_healthy
@@ -61,13 +59,7 @@ services:
     volumes:
       - .:/app
       - media_volume:/app/media
-    environment:
-      - DEBUG=1
-      - DATABASE_URL=mysql://root:root@db:3306/smartinventory2
-      - REDIS_URL=redis://redis:6379/0
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
-      - SECRET_KEY=dev-secret-key-change-in-production
+    env_file: .env.development
     depends_on:
       db:
         condition: service_healthy
@@ -80,13 +72,7 @@ services:
     volumes:
       - .:/app
       - media_volume:/app/media
-    environment:
-      - DEBUG=1
-      - DATABASE_URL=mysql://root:root@db:3306/smartinventory2
-      - REDIS_URL=redis://redis:6379/0
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
-      - SECRET_KEY=dev-secret-key-change-in-production
+    env_file: .env.development
     depends_on:
       db:
         condition: service_healthy

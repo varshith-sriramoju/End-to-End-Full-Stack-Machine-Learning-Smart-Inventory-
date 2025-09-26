@@ -162,6 +162,33 @@ Troubleshooting:
 - First build can take a few minutes while installing Python dependencies
 - If web fails on startup, check db and redis health: `docker-compose ps` and `docker-compose logs -f db redis`
 
+### Environment File Mapping
+
+This project uses multiple environment files to separate concerns:
+
+| File | Purpose | Loaded By |
+|------|---------|-----------|
+| `.env` | Generic defaults (optional, can be kept minimal) | python-decouple (Django) when present |
+| `.env.development` | Development container values (service hostnames: `db`, `redis`) | `docker-compose.yml` via `env_file` |
+| `.env.production` | Production / deployment values (external hostnames, secrets via expansion) | `docker-compose.prod.yml` |
+| `.env.example` | Template for contributors—copy to create real env files | Humans only |
+
+Frontend (Vite) variables must be prefixed with `VITE_` (e.g. `VITE_API_URL`). These are injected at build/dev time and are not available to Django.
+
+Minimal dev workflow:
+```powershell
+Copy-Item .env.example .env.development
+# Edit .env.development and then:
+docker-compose up --build
+```
+
+Production build (example):
+```powershell
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+```
+
+If you add new variables required by the application, update `.env.example` so others know they must set them.
+
 ## 📊 Data Schema
 
 ### CSV Upload Format
